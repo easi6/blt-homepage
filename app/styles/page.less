@@ -1,0 +1,613 @@
+@1em: 16px;
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 0;
+  background-color: rgba(241, 241, 242, 0.7);
+}
+
+#cloud-container {
+  background-color: rgba(241, 241, 242, 0.7);
+}
+
+.container {
+  background-color: rgba(241, 241, 242, 0.7);
+}
+
+#background {
+  float: center;
+  position: fixed;
+  z-index: -1;
+  background-color: rgba(241, 241, 242, 0.7);
+  width: 100%;
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-light {
+  font-weight: 300;
+}
+
+.text-semibold {
+  font-weight: 600;
+}
+
+.text-regular {
+  font-weight: 400;
+}
+
+.text-black {
+  color: #404040;
+}
+
+.btn {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  background-color: rgba(256, 256, 256, 0);
+  background-size: 100%;
+  padding: 0;
+}
+.btn-fb {
+  background-image: url("../images/icns/fbb.png");
+  margin-right: 15px;
+}
+.btn-twt {
+  background-image: url("../images/icns/twitter.png");
+}
+
+.nav {
+  top: 0;
+  left: 0;
+  padding: 0;
+  position: fixed;
+  width: 100%;
+  background-color: #ffffff;
+  height: 60px;
+  border-bottom: 1px solid #d2d2d2;
+  font-weight: 400;
+  font-size: 1.25em;
+  z-index: 999;
+  color: #929292;
+  .nav-container {
+    display: block;
+    width: 960px;
+    height: 60px;
+    margin: auto;
+    padding: 0px;
+    .header-left {
+      img.logo {
+        cursor: pointer;
+        z-index: 999;
+      }
+    }
+    .header-right {
+      margin: 0;
+      width: 500px;
+      height: 60px;
+      nav.menu {
+        float: left;
+        width: 270px;
+        margin: 0;
+        padding: 0;
+        border-right: 1px solid #d2d2d2;
+        height: 60px;
+        ul.navi_menu {
+          margin-top: 15px;
+          display: block;
+          height: 60px;
+          li.menu_item {
+            margin-right: 15px;
+            a, a:hover {
+              cursor: pointer;
+              color: #929292;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+      .social {
+        border-right: 1px solid #d2d2d2;
+        width: 114px;
+        height: 60px;
+        float: left;
+        margin: 0px;
+        padding-top: 15px;
+        .btns {
+          width: 75px;
+          margin: auto;
+        }
+      }
+
+      .language {
+        width: 114px;
+        height: 60px;
+        padding-top: 10px;
+        float: left;
+        .dropdown {
+          a {
+            width: 114px;
+            color: #929292;
+            background-repeat: no-repeat;
+            background-position: right;
+            display: block;
+            height: 45px;
+            padding-top: 5px;
+            padding-left: 25px;
+            padding-right: 0px;
+            position: relative;
+            img {
+              position: absolute;
+              margin-left: 15px;
+              top: 7px;
+              left: 55px;
+            }
+          }
+          a:hover {
+            background: transparent;
+            cursor: pointer;
+            text-decoration: none;
+          }
+          ul.dropdown-menu {
+            width: 114px;
+            min-width: 80px;
+            padding: 0px;
+            margin: 0px;
+            font-size: 1em;
+          }
+        }
+      }
+    }
+  }
+}
+
+@page-height: 800px;
+.page-container {
+  background-color: rgba(241, 241, 242, 0.7);
+  height: @page-height;
+  width: 960px;
+  padding: 0;
+  margin: 0;
+  clear: both;
+  color: #404040;
+
+  p.title {
+    font-size: 3em;
+    line-height: 3.6 * @1em;
+    margin-bottom: 3 * @1em;
+  }
+  p.content {
+    font-size: 1.25em;
+    line-height: 1.5em;
+    margin-bottom: 8px;
+  }
+
+  .page-left {
+    float: left;
+    width: 50%;
+    height: @page-height;
+    text-align: right;
+    .content-container {
+      padding-right: 2.5em;
+      float: right;
+      p {
+        text-align: left;
+        margin-left: 75px;
+      }
+      img.bg {
+        width: 400px;
+        height: 600px;
+      }
+    }
+  }
+
+  .page-right {
+    width: 50%;
+    height: @page-height;
+    margin-left: 50%;
+    text-align: left;
+    .content-container {
+      padding-left: 2.5em;
+      img.bg {
+        width: 400px;
+        height: 600px;
+      }
+    }
+  }
+}
+
+#page-1 {
+  padding-top: 60px;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(241, 241, 242, 0.7);
+  left: 0;
+  .maps {
+    position: absolute;
+    width: 100%;
+    height: 450px;
+    #mapcanvas {
+      position: absolute;
+      width: 100%;
+      height: 450px;
+    }
+
+    .mapoverlay {
+      position: absolute;
+      width: 100%;
+      height: 450px;
+    }
+  }
+  div.tomos {
+    position: absolute;
+    width: 100%;
+    height: 423px;
+    margin-top: 95px;
+    .popup-area {
+      position: relative;
+      width: 960px;
+      margin: auto;
+      .popups {
+        width: 100%;
+        height: 243px;
+        border: 0;
+        .popup {
+          position: absolute;
+          float: left;
+          width: 270px;
+          height: 243px;
+          border: 0;
+          margin-left: -135px;
+          img.profile_img {
+            position: absolute;
+            top: 11px;
+            left: 85px;
+          }
+          p {
+            //width: 240px;
+            margin: auto;
+            font-weight: 600;
+            text-align: center;
+          }
+          p.name {
+            margin-top: 114px;
+            font-size: 20px;
+            color: #404040;
+          }
+          p.message {
+            font-size: 15px;
+            color: #6e6e6e;
+            margin-top: 10px;
+          }
+          .bottoms {
+            cursor: pointer;
+            margin-top: 11px;
+            width: 100%;
+            height: 55px;
+            p.notice {
+              padding-top: 10px;
+              font-size: 14px;
+              color: white;
+            }
+          }
+        }
+
+        .loop_popup (@index) when (@index >= 1) {
+          // create the actual css selector, example will result in
+          // .myclass_30, .myclass_28, .... , .myclass_1
+          @url: %("../images/popup/%d_popup.png", @index);
+          // 2일때 -20, 4일때 +20 을 하려고 이상하게 함. 
+          @left: 160px * @index + 20 * ( mod(@index, 2) - 1 ) * (3 - @index);
+          .popup-@{index} {
+            left: @left;
+            background-image: url(@url);
+          }
+          // next iteration
+          .loop_popup(@index - 1);
+        }
+        // "call" the loopingClass the first time with highest value
+        .loop_popup (5);
+      }
+    }
+
+    .tomos-area {
+      margin: auto;
+      margin-top: 20px;
+      width: 800px;
+      height: 170px;
+      ul.tomos {
+        width: 100%;
+        height: 170px;
+        border: 0;
+        margin: 0;
+        li.tomo {
+          float: left;
+          width: 160px;
+          height: 170px;
+          border: 0;
+        }
+
+        .loop_tomo (@index) when (@index >= 1) {
+          // create the actual css selector, example will result in
+          // .myclass_30, .myclass_28, .... , .myclass_1
+          @url: %("../images/tomo/%d_static.png", @index);
+          @url_hover: %("../images/tomo/%d_mouseover.png", @index);
+          li.tomo-@{index} {
+            background-image: url(@url);
+          }
+          li.tomo-@{index}:hover {
+            cursor: pointer;
+            background-image: url(@url_hover);
+          }
+          // next iteration
+          .loop_tomo(@index - 1);
+        }
+        // "call" the loopingClass the first time with highest value
+        .loop_tomo (5);
+      }
+    }
+  }
+
+  .page-1 {
+    background-color: rgba(241, 241, 242, 0.7);
+    width: 960px;
+    margin: auto;
+    margin-top: 580px;
+    min-height: 0px;
+    height: 140px;
+    .contents {
+      min-height: 140px;
+      text-align: center;
+      p {
+        width: 100%;
+        font-size: 1.5em;
+        text-align: center;
+      }
+      p.bold {
+        font-size: 1.75em;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+
+.bottom-line {
+  width: 65%;
+  height: 1px;
+  margin: auto;
+  border-bottom: solid 2px #babcbe;
+}
+
+.page-2 {
+  margin-top: 780px;
+  .page-left {
+    .content-container {
+      margin-top: 250px;
+      height: 550px;
+    }
+  }
+
+  .page-right {
+    .content-container {
+      padding-top: 100px;
+      height: 700px;
+      .img-area {
+        width: 400px;
+        height: 600px;
+        position: relative;
+        background-image: url("../images/illu/illu1_bg.png");
+        #drop1 {
+          position: absolute;
+          left: 152px;
+          top: 0px;
+          z-index: 10;
+        }
+        #drop2 {
+          position: absolute;
+          left: 218px;
+          top: 151px;
+          z-index: 5;
+        }
+      }
+    }
+  }
+}
+
+.page-3 {
+  .page-left {
+    .content-container {
+      position: relative;
+      margin-top: 100px;
+      .img-area {
+        width: 400px;
+        height: 600px;
+        background-image: url("../images/illu/illu2_bg.png");
+        #illu2_popup {
+          width: 240px;
+          height: 270px;
+          top: 60px;
+          left: 80px;
+          position: absolute;
+          display: none;
+        }
+      }
+    }
+  }
+  .page-right {
+    .content-container {
+      position: relative;
+      display: block;
+      padding-top: 250px; 
+      height: 800px;
+      p {
+        text-align: left;
+      }
+      p.title {
+        font-size: 3em;
+        line-height: 3.6 * @1em;
+        margin-bottom: 3 * @1em;
+      }
+      p.content {
+        font-size: 1.25em;
+        line-height: 1.5em;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+.page-4 {
+  .page-left {
+    .content-container {
+      margin-top: 250px;
+      height: 550px;
+    }
+  }
+  .page-right {
+    .content-container {
+      padding-top: 100px;
+      height: 800px;
+      .img-area {
+        width: 400px;
+        height: 600px;
+        position: relative;
+        background-image: url("../images/illu/illu3_bg.png");
+        img#chat1 {
+          position: absolute;
+          top: 194px;
+          left: 131px;
+          display: none;
+        }
+        img#chat2 {
+          position: absolute;
+          top: 269px;
+          left: 82px;
+          display: none;
+        }
+        img#chat3 {
+          position: absolute;
+          top: 343px;
+          left: 249px;
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.page-5 {
+  .page-left {
+    .content-container {
+      margin-top: 250px;
+      height: 550px;
+    }
+  }
+
+  .page-right {
+    .content-container {
+      padding-top: 100px;
+      height: 800px;
+      .img-area {
+        width: 400px;
+        height: 600px;
+        position: relative;
+        background-image: url("../images/illu/illu4_bg.png");
+        img.fb {
+          position: absolute;
+          top: 123px;
+          left: 81px;
+          display: none;
+        }
+        img.twt {
+          position: absolute;
+          top: 123px;
+          left: 226px;
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.page-6 {
+  height: 685px;
+  .header {
+    padding-top: 68px;
+    width: 100%;
+    text-align: center;
+    p.text-light {
+      font-size: 1.5em;
+    }
+    p.text-bold {
+      font-size: 4.375em;
+      color: #8bc540;
+    }
+  }
+
+  .teaser-images-container {
+    height: 500px;
+    width: 960px;
+    clear: both;
+    .img_container {
+    }
+  }
+}
+
+.bottom {
+  background-color: #404041;
+  width: 100%;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  .bottom-content {
+    position: relative;
+    height: 50px;
+    padding-top: 24px;
+    border: 0;
+    font-size: 16px;
+    p {
+      position: absolute;
+      left: 50%;
+      margin-left: -249px;
+    }
+
+    a.presskit {
+      position: absolute;
+      left: 50%;
+      display: block;
+      padding-left: 10px;
+      border-left: 1px solid #28aae1;
+    }
+
+    a, a:hover, a:visited {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.text-green {
+  color: #8ac53f;
+}
+
+.text-blue {
+  color: #28aae1;
+}
+
+.text-white {
+  color: white;
+}
