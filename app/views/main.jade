@@ -1,147 +1,170 @@
-.nav
+.nav(ng-init="initialize()")
   .nav-container
     .header-left.pull-left
-      img.logo(src="../images/tomoni_logo_blue.png", ng-click="gotoPage(0)")
+      img.logo(src="../images/blt_logo.png", ng-click="gotoPage(0)")
     .header-right.pull-right
       nav.menu
         ul.navi_menu
           li.menu_item.pull-left
-            a.menu_link(ng-click="gotoPage(1)") {{ 'DROP' | translate }}
+            a.menu_link(ng-click="scrollTo('page-1')") {{ 'HOME' | translate }}
           li.menu_item.pull-left
-            a.menu_link(ng-click="gotoPage(2)") {{ 'DISCOVER' | translate }}
+            a.menu_link(ng-click="scrollTo('page-2')") {{ 'TEAM' | translate }}
           li.menu_item.pull-left
-            a.menu_link(ng-click="gotoPage(3)") {{ 'CHAT' | translate }}
+            a.menu_link(ng-click="scrollTo('page-3')") {{ 'SERVICE' | translate }}
+          li.menu_item.pull-left
+            a.menu_link(href="#") {{ 'BLOG' | translate }}
           li.menu_item 
-            a.menu_link(ng-click="gotoPage(4)") {{ 'SHARE' | translate }}
+            a.menu_link(ng-click="scrollTo('page-4')") {{ 'CONTACTUS' | translate }}
       .social
         .btns
           a.btn.btn-fb(href="https://www.facebook.com/tomoniapp")
           a.btn.btn-twt(href="https://twitter.com/tomoniapp")
       .language
-        .dropdown
-          a.dropdown-toggle english
-          ul.dropdown-menu(role="menu", aria-labelledby="dLabel")
-            li(role="presentation") 
-              a(role="menuitem", ng-click="languageChange('us')") english
-            li(role="presentation")
-              a(role="menuitem", ng-click="languageChange('kr')") 한국어
-            li(role="presentation") 
-              a(role="menuitem", ng-click="languageChange('jp')") 日本語
-            li(role="presentation")
-              a(role="menuitem", ng-click="languageChange('tw')") 中文
+          a.lang.lang-en(ng-click="languageChange('us')") Eng
+          span |
+          a.lang.lang-ko(ng-click="languageChange('kr')") Kor
 
 #page-1
-  .maps
-    #mapcanvas(ng-init="initialize()")
-    .mapoverlay
-      img.mapoverlay(src="../images/dark_overlay_bg2.png")
-  .tomos
-    .popup-area
-      .popups
-        .popup.popup-1(ng-show="show_popups[0]")
-          img.profile_img(src="../images/popup/marisa2.png")
-          p.name {{ 'MARISA' | translate }}
-          p.message {{ 'TOMO_EXERCISE' | translate }}
-          .bottoms(ng-click="goToStoreLink()")
-            p.notice {{ 'COMINGSOON' | translate }}
-        .popup.popup-2(ng-show="show_popups[1]")
-          img.profile_img(src="../images/popup/Nestor.png")
-          p.name {{ 'NESTOR' | translate }}
-          p.message {{ 'TOMO_BEER' | translate }}
-          .bottoms(ng-click="goToStoreLink()")
-            p.notice {{ 'COMINGSOON' | translate }}
-        .popup.popup-3(ng-show="show_popups[2]")
-          img.profile_img(src="../images/popup/jordan2.png")
-          p.name {{ 'JORDAN' | translate }}
-          p.message {{ 'TOMO_EAT' | translate }}
-          .bottoms(ng-click="goToStoreLink()")
-            p.notice {{ 'COMINGSOON' | translate }}
-        .popup.popup-4(ng-show="show_popups[3]")
-          img.profile_img(src="../images/popup/Kyeongsik.png")
-          p.name {{ 'KYEONGSIK' | translate }}
-          p.message {{ 'TOMO_DATE_1' | translate }}
-          .bottoms(ng-click="goToStoreLink()")
-            p.notice {{ 'COMINGSOON' | translate }}
-        .popup.popup-5(ng-show="show_popups[4]")
-          img.profile_img(src="../images/popup/Momo.png")
-          p.name {{ 'MOMO' | translate }}
-          p.message {{ 'TOMO_DATE_2' | translate }}
-          .bottoms(ng-click="goToStoreLink()")
-            p.notice {{ 'COMINGSOON' | translate }}
-    .tomos-area
-      ul.tomos
-        li.tomo.tomo-1(ng-click="show_popup(0)")
-        li.tomo.tomo-2(ng-click="show_popup(1)")
-        li.tomo.tomo-3(ng-click="show_popup(2)")
-        li.tomo.tomo-4(ng-click="show_popup(3)")
-        li.tomo.tomo-5(ng-click="show_popup(4)")
-  .page-container.page-1
-    .contents
-      p.text-black.text-bold {{ 'WELCOME-TITLE' | translate }}
-      p.text-black {{ 'WELCOME-CONTENT' | translate }}
-    .bottom-line
+  .team-image-container.page-1
+    .img-area
+      img.team_photo(src="../images/blt_team_photo.png")
 
-.page-container.page-2
-  .page-left
-    .content-container
-      p.title.text-light {{ 'TOMO-TITLE1' | translate }}<br />{{ 'TOMO-TITLE2' | translate }}
-      p.content.text-regular {{ 'TOMO-P1' | translate }}
-      p.content.text-regular {{ 'TOMO-P2' | translate }}
-      p.content.text-regular {{ 'TOMO-P3' | translate }}
-  .page-right
-    .content-container
-      .img-area
-        img#drop1(src="../images/illu/illu1_parachute.png")
-        img#drop2(src="../images/illu/illu1_shadowdrop.png")
-  .bottom-line
+#page-2.page-container.page-2.color-change
+  .team-member-container
+    .page-header
+      h2.page-title Our Team
+    .member-list-container
+      .member-list-area
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
+        .member-item
+          .photo-container
+            img.member-photo(src="../images/member_1.png")
+            .name-area
+              h3.name 유철현 변리사 대표
+            .hover-area 
+              p.name 유철현 변리사 대표
+              p.desc 서울대학교 재료공학부<br /> 전직 프로그래머 <br />청년창업자금 심의위원<br />인터넷기업협회 전임강사<br />서울시 디자인 컨설턴트<br />ryu@blte.kr
 
-#page-3.page-container.page-3
-  .page-left
-    .content-container
-      .img-area
-        img#illu2_popup(src="../images/illu/illu2_popup.png")
-  .page-right
-    .content-container
-      p.title.text-light {{ 'DROP-TITLE1' | translate }}<br />{{ 'DROP-TITLE2' | translate }}
-      p.content.text-regular {{ 'DROP-P' | translate }}
-  .bottom-line
 
-#page-4.page-container.page-4
-  .page-left
-    .content-container
-      p.title.text-light {{ 'CHAT-TITLE1' | translate }}<br/ >{{ 'CHAT-TITLE2' | translate }}<br />{{ 'CHAT-TITLE3' | translate }}
-      p.content.text-regular {{ 'CHAT-P' | translate }}
-  .page-right
-    .content-container
-      .img-area 
-        img#chat1(src="../images/illu/illu3_chat1.png")
-        img#chat2(src="../images/illu/illu3_chat2.png")
-        img#chat3(src="../images/illu/illu3_chat3.png")
-  .bottom-line
+#page-3.page-container.page-3.color-change
+  .project-container
+    .page-header
+      h2.page-title Service
+    .project-list-container
+      .project-list-area
+        .project-item
+          .photo-container
+            img.project-photo(src="../images/member_1.png")
+          .desc-container
+            .desc-area
+              p.title 1. 지적재산권 출원 및 소송
+              p.desc - 높은 등록율과 승소율로 당신의 아이디어와 브랜드를 보호해 드립니다. 
+                span.readmore(ng-click="show_readmore($event)") more...
+              p.desc.hidden = 특허는 연구에 소요되는 돈과 시간이 담기는 그릇이고, 상표는 마케팅 활동에 투입된 돈과 시간이 담기는 그릇입니다. <br />비엘티의 변리사들은 강한 권리를 확보해드릴 뿐만 아니라, 등록받은 특허, 상표를 활용하여 귀하의 사업을 성장시키는 방법을 가장 잘 알고 있습니다. 
+        .project-item
+          .photo-container
+            img.project-photo(src="../images/member_1.png")
+          .desc-container
+            .desc-area
+              p.title 2.아이디어 워크샵
+              p.desc - 쉽고 재미있는 아이디어 워크샵으로 귀사의 원천특허를 확보하세요!
+                span.readmore(ng-click="show_readmore($event)") more...
+              p.desc.hidden = BLT는 아이디어를 권리화하는것 뿐만 아니라, 새로운 아이디어가 나올 수 있도록 발명워크샵을 제공하는 새로운 특허법률사무소입니다. <br />기존에 나와있던 발명을 철저히 분석하고, 그동안 간과되었던 문제점을 함께 연구하여, 새로운 발명을 만들어낼 수 있도록 도와드립니다. 
+        .project-item
+          .photo-container
+            img.project-photo(src="../images/member_1.png")
+          .desc-container
+            .desc-area 
+              p.title 3.찾아가는 특허, 상표, 디자인 세미나
+              p.desc - 최고의 지식재산 강사들이 기업을 찾아가서 세미나를 제공합니다.
+                span.readmore(ng-click="show_readmore($event)") more...
+              p.desc.hidden = 강의안은 항상 수강생 맞춤형으로 준비됩니다. 특히, 기업 맞춤형 특허세미나의 경우, 경쟁사 분석을 철저히 준비하여, <br />모든 수강자들이 몰입할 수 있는 퀄리티 컨텐츠를 제공합니다.
+        .project-item
+          .photo-container
+            img.project-photo(src="../images/member_1.png")
+          .desc-container
+            .desc-area
+              p.title 4.브랜드 네이밍
+              p.desc - 사업 성공의 절반은 좋은 이름에서 나옵니다. BLT와 함께 네이밍 하세요!
+                span.readmore(ng-click="show_readmore($event)") more...
+              p.desc.hidden = 브랜드 네이밍은 사업의 시작이자 절반입니다. 비엘티는 고객이 하고자 하는 사업의 본질을 고민하고, 네이밍에 직접적인 조언을 드립니다.<br />BLT와 함께 상표등록이 가능한 임팩트 있는 브랜드를 보유하세요!
+
+#page-4.page-container.page-4.color-change
+  .contactus-container
+    .page-header
+      h2.page-title Contact us
+    .address-container
+      .address-area
+        p.address 서울시 서초구 반포동 724-11<br /> 씨엘빌딩 6층<br /> 070-7743-5709<br /> 070-4855-0102<br /> cs@blte.kr
+      .map-container
+        #map
 
 #page-5.page-container.page-5
-  .page-left
-    .content-container
-      p.title.text-light {{ 'SHARE-TITLE1' | translate }}<br />{{ 'SHARE-TITLE2' | translate }}<br />{{ 'SHARE-TITLE3' | translate }}<br />{{ 'SHARE-TITLE4' | translate }}
-      p.content.text-regular {{ 'SHARE-P1' | translate }}<br />{{ 'SHARE-P2' | translate }}
-  .page-right
-    .content-container
-      .img-area
-        img.fb.illu4_fadein(src="../images/illu/illu4_fb.png")
-        img.twt.illu4_fadein(src="../images/illu/illu4_tw.png")
-  .bottom-line
 
 #page-6.page-container.page-6
-  .header
-    p.text-light {{ 'COMINGSOON-TITLE1' | translate }}
-      a.app_link(href="{{ 'APPSTORE_URL' | translate }}", target="_blank")
-        img(src="../images/appke70px.png")
-      a.app_link(href="{{ 'GOOGLESTORE_URL' | translate }}", target="_blank")
-        img(src="../images/Play-Store70px.png")
-    p.text-bold {{ 'COMINGSOON-TITLE2' | translate }}
-  .teaser-images-container
-    .img_container 
-      img(src="../images/illu/mocks.png")
 
 .bottom
   .bottom-content

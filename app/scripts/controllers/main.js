@@ -1,80 +1,48 @@
 'use strict';
 
-// left: 37, up: 38, right: 39, down: 40,
-// // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-var keys = [37, 38, 39, 40];
-
-function preventDefault(e) {
- e = e || window.event;
- if (e.preventDefault)
-   e.preventDefault();
- e.returnValue = false;  
-}
-
-function keydown(e) {
- for (var i = keys.length; i--;) {
-   if (e.keyCode === keys[i]) {
-     preventDefault(e);
-     return;
-   }
- }
-}
-
-function wheel(e) {
- preventDefault(e);
-}
-
-function disable_scroll() {
- if (window.addEventListener) {
-   window.addEventListener('DOMMouseScroll', wheel, false);
- }
- window.onmousewheel = document.onmousewheel = wheel;
- document.onkeydown = keydown;
-}
-
-function enable_scroll() {
- if (window.removeEventListener) {
-   window.removeEventListener('DOMMouseScroll', wheel, false);
- }
- window.onmousewheel = document.onmousewheel = document.onkeydown = null;  
-}
-
 angular.module('homepageApp')
   .controller('MainCtrl', function ($scope, $window, $location, $translate, $http) {
     $scope.map = null;
+    $scope.marker = null;
     $scope.show_popups = [false, false, true, false, false];
-    $scope.is_scrolling = false;
-    $scope.scroll_enable = true;
     $scope.pages_top = [0, 720, 1520, 2320, 3120, 3920];
-    $scope.prev_pos = 0;
-    $scope.anim_duration = 600;
-    $scope.anim_threshold = 40;
-    $scope.presskitURL = "/Presskits/Tomoni Press Kit (EN).zip";
 
-    $scope.getCurPage = function() {
-      var scrollTop = $(document).scrollTop();
-      for (var top in $scope.pages_top) {
-        if (scrollTop < $scope.pages_top[top]) 
-          return top;
-      }
-      return 6;
-    };
 
     $scope.initialize = function() {
       var mapOptions = {
-        center: new google.maps.LatLng(37.57, 127.12123),
+        center: new google.maps.LatLng(37.5084321,127.0209702),
         zoom: 13,
         mayTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true,
         disableDoubleClickZoom: true,
-        draggable: false,
+        draggable: true,
         overviewMapControl: false,
         streetViewControl: false,
         scaleControl: false,
         zoomControl: false
       };
 
-      $scope.map = new google.maps.Map(document.getElementById('mapcanvas'), mapOptions);
+      $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+      var iconOpt = {
+        anchor: new google.maps.Point(0, 0),
+        size: new google.maps.Size(60, 66),
+        url: "../images/map_logo.png"
+      };
+
+      //var icon =  new google.maps.Icon(iconOpt);
+      //console.log(icon);
+
+      var markerOptions = {
+        position: new google.maps.LatLng(37.5084321,127.0209702),
+        title: "BLT Office",
+        visible: true,
+        icon: "../images/map_logo.png",
+        map: $scope.map
+      };
+
+      $scope.marker = new google.maps.Marker(markerOptions);
+
       if ($window.localStorage) {
         var location = $window.localStorage.getItem("location");
         if (location) {
@@ -102,131 +70,27 @@ angular.module('homepageApp')
         }
       }
       $scope.pages_top[$scope.pages_top.length - 1] = $(document).height() - screen_height - $scope.anim_threshold;
-
-      $(document).scroll(function(e) {
-        if (!$scope.is_scrolling) {
-          //console.log('prev pos = ' + $scope.prev_pos);
-          var cur_page = $scope.getCurPage();
-          //console.log('cur page = ' + cur_page);
-          var top = $(this).scrollTop();
-          if (cur_page <= 5 && top > 0 && top > $scope.prev_pos + $scope.anim_threshold) {
-            $scope.gotoPage(cur_page);
-            $scope.prev_pos = top;
-          } else if (cur_page > 0 && top < $scope.prev_pos - $scope.anim_threshold) {
-            $scope.gotoPage(cur_page - 1);
-            $scope.prev_pos = top;
-          }
-        }
-      });
     };
 
-    $scope.goToStoreLink = function() {
-      $scope.is_scrolling = true;
-      $('body, html').animate({scrollTop: 3920}, $scope.anim_duration, function() {
-        $scope.is_scrolling = false;
-      });
-    };
-
-    $scope.gotoPage = function(page) {
-      $scope.is_scrolling = true;
-      $scope.prev_pos = top;
-      disable_scroll();
-      $scope.scrollToPage(page);
-    };
+    $scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll();
+    }
 
     $scope.languageChange = function(language) {
-      var lang_str = "english";
       switch(language) {
         case "us" :
           $translate.uses("en_US");
-          $scope.presskitURL = "/Presskits/Tomoni Press Kit (EN).zip";
           break;
         case "kr" :
           $translate.uses("ko_KR");
-          lang_str = "한국어"
-          $scope.presskitURL = "/Presskits/Tomoni Press Kit (KR).zip";
-          break;
-        case "jp" :
-          $translate.uses("ja_JP");
-          lang_str = "日本語"
-          $scope.presskitURL = "/Presskits/Tomoni Press Kit (JP).zip";
-          break;
-        case "cn" :
-          $translate.uses("zh_TW");
-          lang_str = "中文"
-          $scope.presskitURL = "/Presskits/Tomoni Press Kit (CN).zip";
-          break;
-        case "tw" :
-          $translate.uses("zh_TW");
-          lang_str = "中文"
-          $scope.presskitURL = "/Presskits/Tomoni Press Kit (CN).zip";
           break;
         default:
           $translate.uses("en_US");
-          $scope.presskitURL = "/Presskits/Tomoni Press Kit (EN).zip";
           break;
       }
-      $('a.dropdown-toggle').html(lang_str);
     };
 
-    $scope.scrollToPage = function(to_page) {
-      //console.log(to_page);
-      if (to_page < 0) 
-        to_page += 6;
-      $('body, html').animate({scrollTop: $scope.pages_top[to_page]}, $scope.anim_duration, function() {
-        //console.log("scroll to page complete!"); 
-        $scope.is_scrolling = false;
-        $scope.prev_pos = $scope.pages_top[to_page];
-        $scope.animAfterScroll(to_page);
-      });
-    };
-
-    $scope.animAfterScroll = function(cur_page) {
-      if (cur_page == 1) {
-        $('#drop1').animate({top: 33}, 500);
-        $('#drop2').animate({top: 171, left:198}, 500, function(){ return $scope.animFinish(cur_page);});
-      } else if (cur_page == 2) {
-        $('#illu2_popup').fadeIn(500, function(){ return $scope.animFinish(cur_page);});
-      } else if (cur_page == 3) {
-        setTimeout(function() { 
-          $('#chat1').show();
-          setTimeout(function() {
-            $('#chat2').show();
-            setTimeout(function() {
-              $('#chat3').show();
-              return $scope.animFinish(cur_page);
-            }, 500);
-          }, 500);
-        }, 250);
-      } else if (cur_page == 4) {
-        $('img.illu4_fadein').fadeIn(500, function(){ return $scope.animFinish(cur_page);});
-      } else {
-        $scope.animFinish(cur_page);
-      }
-    };
-
-    $scope.animFinish = function(cur_page) {
-      enable_scroll();
-      for (var page=1; page <=4; page++) {
-        if (page != cur_page)
-          $scope.animReset(page);
-      }
-    };
-
-    $scope.animReset = function (cur_page) {
-      if (cur_page == 1) {
-        $('#drop1').css({top: 0});
-        $('#drop2').css({top: 151, left:218});
-      } else if (cur_page == 2) {
-        $('#illu2_popup').hide();
-      } else if (cur_page == 3) {
-        $('#chat1').hide();
-        $('#chat2').hide();
-        $('#chat3').hide();
-      } else if (cur_page == 4) {
-        $('img.illu4_fadein').hide();
-      }
-    };
 
     $scope.getIP = function() {
       $http.jsonp("http://jsonip.com?callback=JSON_CALLBACK").success( function(data) {
@@ -249,9 +113,8 @@ angular.module('homepageApp')
       });
     };
 
-    $scope.show_popup = function(popup_idx) {
-      for (var i=0; i < $scope.show_popups.length; i++) {
-        $scope.show_popups[i] = i == popup_idx;
-      }
+    $scope.show_readmore = function(e) {
+      angular.element(e.target).parent().parent().find("p.desc.hidden").removeClass('hidden');
+      angular.element(e.target).remove();
     };
   });
