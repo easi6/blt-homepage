@@ -195,6 +195,24 @@ p {
   p {
     font-family: "Nanum Gothic";
   }
+
+  p.bullet:before {
+    /* For a round bullet */
+    content:'\2022';
+    /* For a square bullet */
+    /*content:'\25A0';*/
+    display: block;
+    position: relative;
+    max-width: 0px;
+    max-height: 0px;
+    left: -20px;
+    top: -6px;
+    color: #ff8000;
+    font-size: 25px;
+  }
+  p.bullet {
+    padding-left: 5px;
+  }
 }
 
 #page-1 {
@@ -288,7 +306,7 @@ p {
               p.desc {
                 font-size: 20px;
                 text-align: left;
-                width: 230px;
+                width: 234px;
                 margin: auto;
                 margin-top: 30px;
                 line-height: 40px;
@@ -390,13 +408,38 @@ p {
       height: 100%;
       float: left;
       min-height: 400px;
+      padding-top: 10px;
       p.address {
         max-width: 510px;
         width: 100%;
         margin: auto;
-        margin-top: 30px;
+        margin-top: 20px;
         font-size:  18px;
         color: white;
+        position: relative;
+        padding-left: 31px;
+        line-height: 21px;
+        span.icn_addr {
+          width: 21px;
+          height: 21px;
+          display: inline-block;
+          position: absolute;
+          left: 0;
+        }
+        span.address {
+          top: 2px;
+          background-image: url("../images/address.png");
+        }
+        span.tel {
+          background-image: url("../images/phone.png");
+        }
+        span.fax {
+          background-image: url("../images/fax.png");
+        }
+        span.email {
+          top: 4px;
+          background-image: url("../images/email.png");
+        }
       }
     }
 
