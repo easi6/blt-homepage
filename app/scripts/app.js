@@ -5,8 +5,7 @@ angular.module('homepageApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'pascalprecht.translate',
-  'ui.bootstrap.dropdownToggle'
+  'pascalprecht.translate'
 ])
   .config(function ($routeProvider, $translateProvider) {
     $routeProvider
