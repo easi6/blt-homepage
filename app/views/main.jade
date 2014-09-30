@@ -5,7 +5,7 @@
       span.icon-bar
       span.icon-bar
       span.icon-bar
-    nav.mobile-menu.visible-xs.collapse.in(collapse="!isCollapsed", style="height: auto;")
+    nav.mobile-menu.visible-xs.collapse(collapse="!isCollapsed", style="height: auto;")
       ul.nav.navbar-nav
         li
           a.menu_link(ng-click="scrollTo('page-1')") {{ 'HOME' | translate }}

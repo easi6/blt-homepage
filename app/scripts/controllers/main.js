@@ -6,7 +6,7 @@ angular.module('homepageApp')
     $scope.marker = null;
     $scope.show_popups = [false, false, true, false, false];
     $scope.pages_top = [0, 720, 1520, 2320, 3120, 3920];
-    $scope.isCollapsed = true;
+    $scope.isCollapsed = false;
 
 
     $scope.initialize = function() {
