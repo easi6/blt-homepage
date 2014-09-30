@@ -6,6 +6,7 @@ angular.module('homepageApp')
     $scope.marker = null;
     $scope.show_popups = [false, false, true, false, false];
     $scope.pages_top = [0, 720, 1520, 2320, 3120, 3920];
+    $scope.isCollapsed = true;
 
 
     $scope.initialize = function() {
@@ -42,39 +43,12 @@ angular.module('homepageApp')
       };
 
       $scope.marker = new google.maps.Marker(markerOptions);
-
-      if ($window.localStorage) {
-        var location = $window.localStorage.getItem("location");
-        if (location) {
-          $scope.languageChange(location);
-        } else {
-          $scope.getIP();
-        }
-      } else {
-        $scope.getIP();
-      }
-
-      //screen height 사이즈 보정
-      var screen_height = $(window).height();
-      if (screen_height < 800) {
-        //console.log('need to screen size edit');
-        var offset = 800 - screen_height; 
-        for (var i=1; i< $scope.pages_top.length - 1; i++) {
-          $scope.pages_top[i] += offset;
-        }
-      } else {
-        var offset = (screen_height - 800) / 2;
-        //console.log(offset);
-        for (var i=1; i< $scope.pages_top.length - 1; i++) {
-          $scope.pages_top[i] -= offset;
-        }
-      }
-      $scope.pages_top[$scope.pages_top.length - 1] = $(document).height() - screen_height - $scope.anim_threshold;
     };
 
     $scope.scrollTo = function(id) {
       $location.hash(id);
-      $anchorScroll();
+      //$anchorScroll();
+      $scope.isCollapsed = !$scope.isCollapsed;
     }
 
     $scope.languageChange = function(language) {

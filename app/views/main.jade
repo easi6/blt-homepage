@@ -1,10 +1,31 @@
-.nav(ng-init="initialize()")
-  .nav-container
+.nav.navbar-default(ng-init="initialize()")
+  .nav-container.nav-bar
+    button.navbar-toggle(data-toggle="collapse", data-target="mobile-nav", ng-click="isCollapsed = !isCollapsed")
+      span.sr-only Toggle Nav
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    nav.mobile-menu.visible-xs.collapse.in(collapse="!isCollapsed", style="height: auto;")
+      ul.nav.navbar-nav
+        li
+          a.menu_link(ng-click="scrollTo('page-1')") {{ 'HOME' | translate }}
+        li
+          a.menu_link(ng-click="scrollTo('page-2')") {{ 'TEAM' | translate }}
+        li
+          a.menu_link(ng-click="scrollTo('page-3')") {{ 'SERVICE' | translate }}
+        li
+          a.menu_link(href="http://blog.blt.kr/", target="_blank") {{ 'BLOG' | translate }}
+        li
+          a.menu_link(ng-click="scrollTo('page-4')") {{ 'CONTACTUS' | translate }}
+        li
+          a.btn.btn-fb(href="https://www.facebook.com/byunlisa", target="_blank", style="margin-left: 25px; margin-bottom:10px;")
+        li
+          a.btn.btn-twt(href="https://twitter.com/byunlisa", target="_blank", style="margin-left: 25px;")
     .header-left.pull-left
       img.logo(src="../images/blt_logo.png", ng-click="gotoPage(0)")
-    .header-right.pull-right
+    .header-right.pull-right.hidden-xs
       nav.menu
-        ul.navi_menu
+        ul#navi-menu.navi_menu
           li.menu_item.pull-left
             a.menu_link(ng-click="scrollTo('page-1')") {{ 'HOME' | translate }}
           li.menu_item.pull-left
@@ -17,8 +38,8 @@
             a.menu_link(ng-click="scrollTo('page-4')") {{ 'CONTACTUS' | translate }}
       .social
         .btns
-          a.btn.btn-fb(href="https://www.facebook.com/byunlisa")
-          a.btn.btn-twt(href="https://twitter.com/byunlisa")
+          a.btn.btn-fb(href="https://www.facebook.com/byunlisa", target="_blank")
+          a.btn.btn-twt(href="https://twitter.com/byunlisa", target="_blank")
       .language
           a.lang.lang-en(ng-click="languageChange('us')") Eng
           span |

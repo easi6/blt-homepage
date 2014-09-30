@@ -1,6 +1,10 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 @1em: 16px;
+@MAX_MD: 1020px;
+@MAX_SM: 700px;
+@MAX_XS: 380px;
+
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 0;
@@ -75,7 +79,7 @@ p {
   background-image: url("../images/icns/twitter.png");
 }
 
-.nav {
+div.nav {
   top: 0px;
   left: 0;
   padding: 0;
@@ -100,8 +104,52 @@ p {
     margin: auto;
     margin-top: 30px;
     padding: 0px;
+    .navbar-toggle {
+      float: left;
+      margin-left: 20px;
+      outline: none;
+    }
+    .mobile-menu {
+      position: absolute;
+      width: 100%;
+      top: 90px;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      ul {
+        background: rgba(255,255,255, 0.3);
+        width: 100%;
+        margin: 0;
+        li {
+          margin-left: 10px;
+          a {
+            color: #ff8000;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    @media (max-width: 768px) {
+      margin-left: 0px;
+      .visible-xs.collapse.in {
+        display: block !important;
+      }
+      .visible-xs.collapse {
+        display: none !important;
+      }
+    }
     .header-left {
       margin-left: 100px;
+      @media (max-width: 768px) {
+        margin-left: 0px;
+        img.logo {
+          position: absolute;
+          left: 50%;
+          margin-left: -50px;
+          top: 0;
+          margin-top: 30px;
+        }
+      }
       img.logo {
         cursor: pointer;
         z-index: 999;
@@ -252,6 +300,9 @@ p {
       width: 100%;
       height: 100%;
       max-width: 1200px;
+      @media (max-width: @MAX_MD) {
+        margin-top: 50px;
+      }
       .member-list-area {
         float: left;
         width: 100%;
@@ -313,6 +364,29 @@ p {
               }
             }
           }
+          @media (max-width: @MAX_MD) {
+            .photo-container {
+              .hover-area {
+                display: block;
+                position: relative;
+                margin-top: -60px;
+                height: 320px;
+                p.name {
+                  padding-top: 20px;
+                }
+              }
+            }
+          }
+
+          @media (min-width: @MAX_SM) and (max-width: @MAX_MD) {
+            width: 50%;
+            max-width: 450px;
+          }
+
+          @media (max-width: @MAX_SM) {
+            width: 100%;
+            max-width: 640px;
+          }
         }
       }
     }
@@ -335,6 +409,9 @@ p {
       width: 100%;
       height: 100%;
       max-width: 1200px;
+      @media (max-width: @MAX_MD) {
+        margin-top: 50px;
+      }
       .project-list-area {
         width: 100%;
         height: 100%;
@@ -385,6 +462,22 @@ p {
               }
             }
           }
+
+          @media (max-width: @MAX_MD) {
+            .photo-container {
+              width: 100%;
+              margin: auto;
+              float: none;
+            }
+            .desc-container {
+              width: 100%;
+              float: none;
+              margin-top: 30px;
+              min-height: 100%;
+              margin-bottom: 30px;
+            }
+          }
+
         }
       }
     }
@@ -454,6 +547,33 @@ p {
         margin-right: 30px;
       }
     }
+
+    @media (max-width: @MAX_MD) {
+      padding-top: 10px;
+      .address-area {
+        width: 100%;
+        max-width: 290px;
+        float: none;
+        margin: auto;
+        min-height: 100%;
+        margin-bottom: 35px;
+      }
+
+      .map-container {
+        float: none;
+        width: 100%;
+        min-width: 500px;
+        margin: auto;
+        margin-bottom: 50px;
+        #map {
+          width: 450px;
+          float: none;
+          margin: auto;
+        }
+      }
+
+    }
+
   }
 }
 
