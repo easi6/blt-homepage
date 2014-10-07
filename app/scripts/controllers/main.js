@@ -12,11 +12,11 @@ angular.module('homepageApp')
     $scope.initialize = function() {
       var mapOptions = {
         center: new google.maps.LatLng(37.5084321,127.0209702),
-        zoom: 13,
+        zoom: 16,
         mayTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true,
         disableDoubleClickZoom: true,
-        draggable: true,
+        draggable: false,
         overviewMapControl: false,
         streetViewControl: false,
         scaleControl: false,
