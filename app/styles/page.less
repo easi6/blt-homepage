@@ -67,7 +67,7 @@ p {
   width: 30px;
   height: 30px;
   border: 0;
-  background-color: rgba(256, 256, 256, 0);
+  background-color: rgba(255, 255, 255, 0);
   background-size: 100%;
   padding: 0;
 }
@@ -87,6 +87,7 @@ div.nav {
   width: 100%;
   //background-color: #ffffff;
   background: rgba(255,255,255, 0.3);
+  //background: rgba(0,0,0, 0.3);
   height: 90px;
   font-weight: 400;
   font-size: 1.25em;
@@ -95,6 +96,7 @@ div.nav {
   .nav-container {
     //background-color: #ffffff;
     //background: rgba(255,255,255, 0.1);
+    background: rgba(0,0,0, 0.3);
     border-top: 1px solid #d2d2d2;
     border-bottom: 1px solid #d2d2d2;
     display: block;
@@ -126,7 +128,8 @@ div.nav {
       margin: 0;
       padding: 0;
       ul {
-        background: rgba(255,255,255, 0.3);
+        //background: rgba(255,255,255, 0.3);
+        background: rgba(0,0,0, 0.3);
         width: 100%;
         margin: 0;
         li {
@@ -342,7 +345,8 @@ div.nav {
               h3.name {
                 padding-top: 15px;
                 font-size: 20px;
-                color: #404040;
+                //color: #404040;
+                color: white;
                 line-height: 20px;
                 height: 20px;
               }
@@ -476,6 +480,7 @@ div.nav {
               }
               p.desc {
                 font-size: 18px;
+                margin-top: 6px;
                 span.readmore {
                   color: #ff8000;
                   cursor: pointer;
@@ -622,6 +627,9 @@ div.nav {
         margin: auto;
         min-height: 100%;
         margin-bottom: 35px;
+        p.address {
+          max-width: 280px;
+        }
       }
 
       .map-container {
