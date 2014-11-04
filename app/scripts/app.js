@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('homepageApp', [
+var app = angular.module('homepageApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -22,5 +22,11 @@ angular.module('homepageApp', [
         prefix: 'scripts/l10n/',
         suffix: '.json'
       });
-      $translateProvider.preferredLanguage("en_US");
+      $translateProvider.preferredLanguage("ko_KR");
   });
+
+app.filter("sanitize", ['$sce', function($sce) {
+  return function(htmlCode) {
+    return $sce.trustAsHtml(htmlCode);
+  }
+}]);

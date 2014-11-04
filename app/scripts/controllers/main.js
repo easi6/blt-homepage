@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homepageApp')
-  .controller('MainCtrl', function ($scope, $window, $location, $translate, $http) {
+  .controller('MainCtrl', function ($scope, $window, $location, $translate, $http, $sce) {
     $scope.map = null;
     $scope.marker = null;
     $scope.show_popups = [false, false, true, false, false];
@@ -54,15 +54,16 @@ angular.module('homepageApp')
     $scope.languageChange = function(language) {
       switch(language) {
         case "us" :
-          $translate.uses("en_US");
+          $translate.use("en_US");
           break;
         case "kr" :
-          $translate.uses("ko_KR");
+          $translate.use("ko_KR");
           break;
         default:
-          $translate.uses("en_US");
+          $translate.use("en_US");
           break;
       }
+      $scope.isCollapsed = !$scope.isCollapsed;
     };
 
 

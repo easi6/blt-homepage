@@ -80,7 +80,12 @@ p {
 }
 
 div.nav {
-  top: 0px;
+  height: 90px;
+  top: 30px;
+  @media (max-width: 768px) {
+  	top: 0px;
+  	height: 60px;
+  }
   left: 0;
   padding: 0;
   position: fixed;
@@ -88,7 +93,6 @@ div.nav {
   //background-color: #ffffff;
   background: rgba(255,255,255, 0.3);
   //background: rgba(0,0,0, 0.3);
-  height: 60px;
   font-weight: 400;
   font-size: 1.25em;
   z-index: 999;
@@ -207,13 +211,14 @@ div.nav {
       }
 
       .language {
-        display: none; // 작업 될 때 가지 숨김.
+        //display: none; // 작업 될 때 가지 숨김.
         font-size: 0.75em;
         color: #ff8000;
         a, a:hover, a:visited {
           color: #ff8000;
           line-height: 15px;
           font-size: 0.75em;
+          cursor: pointer;
         }
         width: 150px;
         height: 20px;
@@ -379,7 +384,8 @@ div.nav {
               p.desc {
                 font-size: 14px;
                 text-align: left;
-                width: 234px;
+                max-width: 280px;
+                width: 100%;
                 margin-top: 20px;
                 margin-left: 25px;
                 line-height: 155%;
