@@ -11,8 +11,8 @@ angular.module('homepageApp')
 
     $scope.initialize = function() {
       var mapOptions = {
-        center: new google.maps.LatLng(37.505293,127.030438),
-        zoom: 16,
+        center: new google.maps.LatLng(37.5059068,127.0258575),
+        zoom: 17,
         mayTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true,
         disableDoubleClickZoom: true,
@@ -35,7 +35,7 @@ angular.module('homepageApp')
       //console.log(icon);
 
       var markerOptions = {
-        position: new google.maps.LatLng(37.505293,127.030438),
+        position: new google.maps.LatLng(37.5059068,127.0258575),
         title: "BLT Office",
         visible: true,
         icon: "../images/map_logo.png",
